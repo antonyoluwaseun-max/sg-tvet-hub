@@ -4,437 +4,585 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SG TVET Group — Electric Vehicle (EV)</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f0f4f9;
-    --surface: #ffffff;
-    --deep: #f7f9fc;
-    --royal: #1a56db;
-    --royal-dark: #1344b8;
-    --royal-light: #3b82f6;
-    --royal-pale: #e8f0fe;
-    --ice: #eef4ff;
+    --royal: #1a3fa8;
+    --royal-mid: #1e4fc2;
+    --royal-light: #2563eb;
+    --royal-pale: #eff4ff;
+    --royal-border: rgba(26,63,168,0.12);
+    --bg: #f4f7fc;
+    --bg-hero: #eef2fb;
     --white: #ffffff;
-    --text: #0f172a;
-    --muted: #64748b;
-    --card: #ffffff;
-    --border: rgba(26,86,219,0.13);
-    --shadow: 0 2px 16px rgba(26,86,219,0.07);
+    --text: #0d1b3e;
+    --text-mid: #2d3f6e;
+    --muted: #6b7a9e;
+    --card-shadow: 0 4px 24px rgba(26,63,168,0.08);
+    --card-hover: 0 16px 48px rgba(26,63,168,0.14);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 40% at 10% 5%, rgba(26,86,219,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 35% at 90% 90%, rgba(59,130,246,0.05) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* HEADER */
+  /* ─── HEADER ─── */
   header {
     position: sticky;
     top: 0;
-    z-index: 100;
-    padding: 0 5%;
-    border-bottom: 1px solid var(--border);
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(14px);
+    z-index: 200;
+    height: 68px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--royal-border);
+    box-shadow: 0 1px 16px rgba(26,63,168,0.06);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
-    box-shadow: 0 1px 12px rgba(26,86,219,0.06);
+    padding: 0 5%;
   }
 
   .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
   }
 
   .logo-img {
-    height: 44px;
-    width: 44px;
+    height: 40px;
+    width: 40px;
     object-fit: contain;
-    border-radius: 6px;
+    border-radius: 8px;
+    background: var(--royal);
+    padding: 2px;
   }
 
-  .logo-text {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.05rem;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    line-height: 1.2;
+  .logo-block { line-height: 1; }
+
+  .logo-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--royal);
+    letter-spacing: -0.01em;
   }
 
-  .logo-text span {
-    display: block;
-    font-size: 0.65rem;
-    font-weight: 500;
+  .logo-sub {
+    font-size: 0.62rem;
+    font-weight: 600;
     color: var(--muted);
-    letter-spacing: 0.06em;
     text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
   }
 
-
-
-
-
-
-
-
-
-
-  @media (max-width: 600px) {
-  
+  .header-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--royal-pale);
+    border: 1px solid var(--royal-border);
+    border-radius: 24px;
+    padding: 7px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--royal);
+    letter-spacing: 0.01em;
   }
 
-  /* HERO */
+  .status-dot-header {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: glow 2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+  }
+
+  /* ─── HERO ─── */
   .hero {
     position: relative;
-    z-index: 1;
+    background: var(--bg-hero);
+    overflow: hidden;
+    padding: 88px 5% 80px;
     text-align: center;
-    padding: 72px 5% 56px;
+    border-bottom: 1px solid var(--royal-border);
+  }
+
+  /* Subtle grid background */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--royal-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--royal-border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.45;
+  }
+
+  /* Soft glow orbs */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 55% at 50% 0%, rgba(26,63,168,0.09) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 15% 100%, rgba(37,99,235,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 35% 30% at 85% 80%, rgba(26,63,168,0.05) 0%, transparent 60%);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    margin: 0 auto;
   }
 
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: var(--royal-pale);
-    border: 1px solid rgba(26,86,219,0.2);
-    color: var(--royal);
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.07em;
+    gap: 10px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid var(--royal-border);
+    border-radius: 32px;
+    padding: 9px 22px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-bottom: 28px;
+    color: var(--royal);
+    margin-bottom: 36px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px rgba(26,63,168,0.07);
   }
 
-  .hero-eyebrow::before {
-    content: '●';
-    font-size: 0.5rem;
-    animation: pulse 2s infinite;
+  .eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--royal-light);
+    border-radius: 50%;
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    margin-bottom: 20px;
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
     color: var(--text);
+    margin-bottom: 24px;
   }
 
-  h1 .accent {
-    background: linear-gradient(90deg, var(--royal), var(--royal-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .hero h1 em {
+    font-style: italic;
+    color: var(--royal);
+    font-weight: 800;
   }
 
   .hero-sub {
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     color: var(--muted);
-    max-width: 560px;
-    margin: 0 auto 48px;
     line-height: 1.75;
-    font-weight: 300;
+    font-weight: 400;
+    max-width: 580px;
+    margin: 0 auto 44px;
   }
 
-  .hero-stats {
+  .hero-cta {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 14px;
     flex-wrap: wrap;
   }
 
-  .stat { text-align: center; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--royal);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 20px rgba(26,63,168,0.3);
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover {
+    background: var(--royal-mid);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(26,63,168,0.38);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: white;
+    color: var(--text-mid);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid var(--royal-border);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(26,63,168,0.06);
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(26,63,168,0.3);
+    background: var(--royal-pale);
+    color: var(--royal);
+  }
+
+  /* ─── STATS STRIP ─── */
+  .stats-strip {
+    background: var(--royal);
+    padding: 24px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0 40px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .stat-item:last-child { border-right: none; }
 
   .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
     font-weight: 800;
-    color: var(--royal);
+    color: white;
     line-height: 1;
   }
 
   .stat-label {
-    font-size: 0.78rem;
-    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     margin-top: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
   }
 
-  /* DIVIDER */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(26,86,219,0.12), transparent);
-    margin: 0 5%;
-  }
-
-  /* PROGRAMS */
+  /* ─── PROGRAMS SECTION ─── */
   .programs {
-    position: relative;
-    z-index: 1;
-    padding: 56px 5%;
+    padding: 72px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  .section-label {
-    font-size: 0.75rem;
+  .section-eyebrow {
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--royal);
+    color: var(--royal-light);
     margin-bottom: 10px;
   }
 
   .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 28px;
-    letter-spacing: -0.02em;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 800;
     color: var(--text);
-  }
-  /* CARDS */
-  .programs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    line-height: 1.2;
   }
 
+  /* ─── CARD ─── */
   .program-card {
     background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: 16px;
-    padding: 26px;
-    transition: all 0.28s ease;
-    cursor: pointer;
+    border: 1px solid var(--royal-border);
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    max-width: 680px;
   }
 
-  .program-card::before {
+  .program-card::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, var(--royal), var(--royal-light));
-    opacity: 0;
-    transition: opacity 0.3s;
+    border-radius: 20px 20px 0 0;
   }
 
   .program-card:hover {
-    border-color: rgba(26,86,219,0.3);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(26,86,219,0.12);
+    transform: translateY(-6px);
+    box-shadow: var(--card-hover);
+    border-color: rgba(26,63,168,0.22);
   }
 
-  .program-card:hover::before { opacity: 1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
 
-  /* STATUS BADGE */
+  .card-icon-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .card-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .card-meta { }
+
+  .card-program-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .card-notebooks-badge {
+    background: var(--royal-pale);
+    border: 1px solid var(--royal-border);
+    color: var(--royal);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
   .status-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 0.72rem;
-    color: #16a34a;
+    color: #15803d;
     font-weight: 600;
-    margin-bottom: 14px;
-    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 4px 12px;
+    border-radius: 20px;
   }
 
   .status-dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     background: #22c55e;
     border-radius: 50%;
-    animation: statusPulse 2.2s infinite;
+    animation: glow 2.2s infinite;
     flex-shrink: 0;
-  }
-
-  @keyframes statusPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-    50% { box-shadow: 0 0 0 4px rgba(34,197,94,0); }
-  }
-
-  .card-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 14px;
-  }
-
-  .card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-
-  .card-notebooks {
-    background: var(--royal-pale);
-    border: 1px solid rgba(26,86,219,0.18);
-    color: var(--royal);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 20px;
-    letter-spacing: 0.03em;
-  }
-
-  .card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-    color: var(--text);
   }
 
   .card-desc {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 18px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--royal-border);
+    padding-bottom: 20px;
   }
 
-  .card-links { display: flex; flex-direction: column; gap: 8px; }
+  .card-links-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .card-links { display: flex; flex-direction: column; gap: 10px; }
 
   .notebook-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--ice);
-    border: 1px solid rgba(26,86,219,0.1);
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 0.82rem;
-    color: var(--text);
+    background: var(--royal-pale);
+    border: 1px solid var(--royal-border);
+    border-radius: 10px;
+    padding: 13px 18px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-mid);
     text-decoration: none;
-    transition: all 0.2s;
-    font-weight: 500;
+    transition: all 0.22s ease;
   }
 
   .notebook-link:hover {
-    background: var(--royal-pale);
-    border-color: rgba(26,86,219,0.3);
+    background: var(--royal);
+    border-color: var(--royal);
+    color: white;
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(26,63,168,0.25);
+  }
+
+  .link-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .link-num {
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
     color: var(--royal);
+    flex-shrink: 0;
+    transition: background 0.22s;
   }
 
-  .notebook-link-icon {
-    font-size: 0.8rem;
-    opacity: 0.4;
-    transition: all 0.2s;
+  .notebook-link:hover .link-num {
+    background: rgba(255,255,255,0.2);
+    color: white;
   }
 
-  .notebook-link:hover .notebook-link-icon {
+  .link-arrow {
+    font-size: 0.9rem;
+    transition: transform 0.22s;
+    opacity: 0.5;
+  }
+
+  .notebook-link:hover .link-arrow {
+    transform: translateX(4px);
     opacity: 1;
-    transform: translateX(3px);
   }
 
-  .icon-blue { background: rgba(26,86,219,0.08); }
-  .icon-green { background: rgba(16,185,129,0.08); }
-  .icon-orange { background: rgba(245,158,11,0.08); }
-  .icon-purple { background: rgba(139,92,246,0.08); }
-  .icon-red { background: rgba(239,68,68,0.08); }
-  .icon-teal { background: rgba(0,201,177,0.08); }
-
-  /* HOW TO USE */
+  /* ─── HOW IT WORKS ─── */
   .how-to {
-    position: relative;
-    z-index: 1;
-    padding: 20px 5% 56px;
+    background: var(--royal);
+    padding: 72px 5%;
   }
 
-  .how-to-grid {
+  .how-to-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .how-to .section-eyebrow { color: rgba(255,255,255,0.6); }
+  .how-to .section-title { color: white; margin-bottom: 48px; }
+
+  .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
-    margin-top: 32px;
+    gap: 20px;
   }
 
   .step-card {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: var(--shadow);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: background 0.25s;
   }
 
+  .step-card:hover { background: rgba(255,255,255,0.12); }
+
   .step-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
     font-weight: 800;
-    color: rgba(26,86,219,0.12);
+    color: rgba(255,255,255,0.12);
     line-height: 1;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .step-title {
     font-weight: 700;
     font-size: 0.95rem;
+    color: white;
     margin-bottom: 8px;
-    color: var(--text);
   }
 
   .step-desc {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.6;
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
   }
 
-  /* FAQ */
+  /* ─── FAQ ─── */
   .faq {
-    position: relative;
-    z-index: 1;
-    padding: 0 5% 60px;
+    padding: 72px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .faq-list {
-    margin-top: 32px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    max-width: 760px;
   }
 
   .faq-item {
     background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
+    border: 1px solid var(--royal-border);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 10px rgba(26,63,168,0.04);
+    transition: box-shadow 0.25s;
+  }
+
+  .faq-item.open {
+    box-shadow: 0 6px 24px rgba(26,63,168,0.1);
+    border-color: rgba(26,63,168,0.25);
   }
 
   .faq-question {
@@ -442,8 +590,8 @@
     background: none;
     border: none;
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.93rem;
     font-weight: 600;
     padding: 20px 24px;
     text-align: left;
@@ -456,17 +604,27 @@
   }
 
   .faq-question:hover { color: var(--royal); }
+  .faq-item.open .faq-question { color: var(--royal); }
 
   .faq-chevron {
-    color: var(--muted);
-    font-size: 0.85rem;
-    transition: transform 0.3s ease;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--royal-pale);
+    border: 1px solid var(--royal-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--royal);
+    transition: all 0.3s ease;
     flex-shrink: 0;
   }
 
   .faq-item.open .faq-chevron {
+    background: var(--royal);
+    color: white;
     transform: rotate(180deg);
-    color: var(--royal);
   }
 
   .faq-answer {
@@ -478,20 +636,18 @@
   .faq-item.open .faq-answer { max-height: 200px; }
 
   .faq-answer-inner {
-    padding: 16px 24px 20px;
-    font-size: 0.87rem;
+    padding: 0 24px 22px;
+    font-size: 0.875rem;
     color: var(--muted);
-    line-height: 1.7;
-    border-top: 1px solid var(--border);
+    line-height: 1.75;
+    border-top: 1px solid var(--royal-border);
+    padding-top: 16px;
   }
 
-  /* FOOTER */
+  /* ─── FOOTER ─── */
   footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    background: var(--white);
-    padding: 28px 5%;
+    background: var(--text);
+    padding: 32px 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -501,37 +657,48 @@
 
   .footer-text {
     font-size: 0.82rem;
-    color: var(--muted);
+    color: rgba(255,255,255,0.45);
   }
 
-  .footer-text strong { color: var(--royal); }
+  .footer-text strong { color: rgba(255,255,255,0.8); }
 
   .footer-powered {
     font-size: 0.78rem;
-    color: var(--muted);
+    color: rgba(255,255,255,0.4);
     display: flex;
     align-items: center;
     gap: 6px;
   }
 
   .footer-powered span {
-    color: var(--royal);
+    color: #93c5fd;
     font-weight: 600;
   }
 
-  /* ANIMATIONS */
+  /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  .hero { animation: fadeUp 0.6s ease forwards; }
-  #programsGrid .program-card:nth-child(1) { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-inner { animation: fadeUp 0.65s ease both; }
+  .program-card { animation: fadeUp 0.55s 0.15s ease both; }
 
-  @media (max-width: 600px) {
-    .hero-stats { gap: 24px; }
-    .programs-grid { grid-template-columns: 1fr; }
+  /* Icon color variants */
+  .icon-blue   { background: #eff4ff; }
+  .icon-green  { background: #f0fdf4; }
+  .icon-orange { background: #fff7ed; }
+  .icon-purple { background: #faf5ff; }
+  .icon-red    { background: #fff1f2; }
+  .icon-teal   { background: #f0fdfa; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 60px 5% 56px; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .stats-strip { gap: 0; overflow-x: auto; }
+    .stat-item { padding: 0 24px; min-width: 100px; }
     footer { flex-direction: column; text-align: center; }
+    .program-card { padding: 24px; }
   }
 </style>
 </head>
@@ -2999,102 +3166,115 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADrcNY9vNpRkNQ7s+lbs1JV
 Zb15osDfL7arLDxlxq2RKqZtZve7vNTaRriXSRcKxXwWePsKBdnGuyWVyeRvVmvSc3jL85Kv4SeR
 DTmbEMauKkpU4ftS1atvaYMOwO3pwjUn+5vXr2dnqfc8ss8rpppHyyPXNz3uVVVelVPgAgW8ywpZ
 akAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" alt="SG TVET Group Logo" />
-    <div class="logo-text">
-      SG TVET GROUP
-      <span>Berhad · AI Training Hub</span>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" alt="SG TVET Group" />
+    <div class="logo-block">
+      <div class="logo-name">SG TVET Group</div>
+      <div class="logo-sub">ELECTRIC VEHICLE AI Hub</div>
     </div>
-  </div></header>
+  </div>
+  <div class="header-status">
+    <span class="status-dot-header"></span>
+    AI Platform Active
+  </div>
+</header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">Interactive Training Hub • 2026</div>
-  <h1>Your Curriculum,<br><span class="accent">Electric Vehicle (EV)</span></h1>
-  <p class="hero-sub">Ask any question in plain English and get instant, cited answers pulled directly from your official training manuals.</p>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">5</div>
-      <div class="stat-label">Programs</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Powered by Artificial Intelligence
+      <span class="eyebrow-dot"></span>
     </div>
-    <div class="stat">
-      <div class="stat-num">1,500+</div>
-      <div class="stat-label">Documents</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">Instant</div>
-      <div class="stat-label">AI Answers</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">Cited</div>
-      <div class="stat-label">Sources</div>
+    <h1>Your Intelligent Gateway<br><em>to EV</em> Mastery</h1>
+    <p class="hero-sub">Enterprise-grade AI training resources engineered for TVET learners and educators. Explore structured programmes, interactive guidance, and expert knowledge — all in one unified platform.</p>
+    <div class="hero-cta">
+      <a href="#programmes" class="btn-primary">⊞ &nbsp;Explore Programmes</a>
+      <a href="#how-it-works" class="btn-secondary">▷ &nbsp;How It Works</a>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- STATS STRIP -->
+<div class="stats-strip">
+<div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Notebooks</div></div>
+  <div class="stat-item"><div class="stat-num">96+</div><div class="stat-label">Documents</div></div>
+  <div class="stat-item"><div class="stat-num">Instant</div><div class="stat-label">AI Answers</div></div>
+  <div class="stat-item"><div class="stat-num">Cited</div><div class="stat-label">Sources</div></div>
+</div>
 
 <!-- PROGRAMS -->
-<section class="programs">
-  <div class="section-label">Electric Vehicle (EV)</div>
-  <div class="section-title">Electric Vehicle (EV) — AI Training Hub</div>
+<section class="programs" id="programmes">
+  <div class="section-eyebrow">Training Resources</div>
+  <div class="section-title">Electric Vehicle — AI Training Notebooks</div>
 
-  <div class="programs-grid" id="programsGrid">
-
-    <!-- EV -->
-    <div class="program-card" data-name="electric vehicle ev kurikulum latihan tahap">
-      <div class="status-badge"><span class="status-dot"></span> Updated: March 2026</div>
-      <div class="card-header">
+  <div class="program-card">
+    <div class="status-badge"><span class="status-dot"></span> Updated: March 2026</div>
+    <div class="card-top">
+      <div class="card-icon-wrap">
         <div class="card-icon icon-green">⚡</div>
-        <span class="card-notebooks">2 Notebooks</span>
+        <div class="card-meta">
+          <div class="card-program-label">EV PROGRAMME</div>
+          <div class="card-title">Electric Vehicle (EV)</div>
+        </div>
       </div>
-      <div class="card-title">Electric Vehicle (EV)</div>
-      <div class="card-desc">Kurikulum Latihan Tahap 2 & Tahap 3 — Electric & Hybrid Vehicle Servicing and Inspection.</div>
-      <div class="card-links">
-        <a href="https://notebooklm.google.com/notebook/9501560a-306c-4664-a75c-0d2f9e90516f" target="_blank" class="notebook-link">Kurikulum Latihan Tahap 2 <span class="notebook-link-icon">→</span></a>
-        <a href="https://notebooklm.google.com/notebook/5131e62b-fc10-46f7-ad53-bc2aa6cf1a38" target="_blank" class="notebook-link">Kurikulum Latihan Tahap 3 <span class="notebook-link-icon">→</span></a>
-      </div>
+      <span class="card-notebooks-badge">2 Notebooks</span>
     </div>
-
+    <p class="card-desc">Kurikulum Latihan Tahap 2 & Tahap 3 — Electric & Hybrid Vehicle Servicing and Inspection. Complete curriculum for professional EV technician certification.</p>
+    <div class="card-links-label">Access Training Notebooks</div>
+    <div class="card-links">
+      <a href="https://notebooklm.google.com/notebook/9501560a-306c-4664-a75c-0d2f9e90516f" target="_blank" class="notebook-link">
+        <div class="link-left">
+          <span class="link-num">01</span>
+          Kurikulum Latihan Tahap 2
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://notebooklm.google.com/notebook/5131e62b-fc10-46f7-ad53-bc2aa6cf1a38" target="_blank" class="notebook-link">
+        <div class="link-left">
+          <span class="link-num">02</span>
+          Kurikulum Latihan Tahap 3
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
   </div>
 
-  </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- HOW TO USE -->
-<section class="how-to">
-  <div class="section-label">Getting Started</div>
-  <div class="section-title">How to Use This Hub</div>
-  <div class="how-to-grid">
-    <div class="step-card">
-      <div class="step-num">01</div>
-      <div class="step-title">Choose Your Program</div>
-      <div class="step-desc">Select the training program you are currently studying from the cards above.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">02</div>
-      <div class="step-title">Open the Notebook</div>
-      <div class="step-desc">Click the notebook link and sign in with your Google account to access the AI hub.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">03</div>
-      <div class="step-title">Ask Any Question</div>
-      <div class="step-desc">Type your question in plain English in the chat box and the AI will answer instantly.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">04</div>
-      <div class="step-title">Get Cited Answers</div>
-      <div class="step-desc">Every answer includes exact citations pointing back to the source document and page number.</div>
+<!-- HOW IT WORKS -->
+<section class="how-to" id="how-it-works">
+  <div class="how-to-inner">
+    <div class="section-eyebrow">Getting Started</div>
+    <div class="section-title">How to Use This Hub</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Open Your Notebook</div>
+        <div class="step-desc">Click the notebook link below and sign in with your Google account to access the AI hub instantly.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Ask Any Question</div>
+        <div class="step-desc">Type your question in plain English and the AI will search through all your curriculum documents instantly.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Get Cited Answers</div>
+        <div class="step-desc">Every answer includes exact citations pointing to the source document and page — fully verifiable.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">Study Smarter</div>
+        <div class="step-desc">Save key notes, revisit topics, and prepare for assessments with AI-guided study sessions tailored to your curriculum.</div>
+      </div>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- FAQ -->
 <section class="faq">
-  <div class="section-label">Support</div>
+  <div class="section-eyebrow">Support</div>
   <div class="section-title">Frequently Asked Questions</div>
   <div class="faq-list">
 
@@ -3104,7 +3284,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" alt="SG TVET Group Log
         <span class="faq-chevron">▼</span>
       </button>
       <div class="faq-answer">
-        <div class="faq-answer-inner">Every answer the AI provides includes numbered citations that point directly to the source document and the exact section where the information was found. You can click on any citation to view the original content in the manual, so you always know exactly where the answer is coming from.</div>
+        <div class="faq-answer-inner">Every answer the AI provides includes numbered citations pointing directly to the source document and exact section. You can click any citation to view the original content in the manual so you always know exactly where the answer comes from.</div>
       </div>
     </div>
 
@@ -3114,7 +3294,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" alt="SG TVET Group Log
         <span class="faq-chevron">▼</span>
       </button>
       <div class="faq-answer">
-        <div class="faq-answer-inner">Yes, completely. Each student's conversation with the AI is private and only visible to them. Nobody else — not other students, trainers or administrators — can see what you are asking or studying. Every session is independent and personal to your own Google account.</div>
+        <div class="faq-answer-inner">Yes, completely. Each student's conversation with the AI is private and only visible to them. No other student, trainer, or administrator can see what you are asking. Every session is personal to your own Google account.</div>
       </div>
     </div>
 
@@ -3124,7 +3304,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" alt="SG TVET Group Log
         <span class="faq-chevron">▼</span>
       </button>
       <div class="faq-answer">
-        <div class="faq-answer-inner">Yes! Google NotebookLM works on any device including smartphones and tablets. Simply click the notebook link from this page, sign in with your Google account and you can start asking questions from anywhere at any time.</div>
+        <div class="faq-answer-inner">Yes! Google NotebookLM works on any device including smartphones and tablets. Click the notebook link, sign in with your Google account, and start asking questions from anywhere at any time.</div>
       </div>
     </div>
 
@@ -3134,7 +3314,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" alt="SG TVET Group Log
         <span class="faq-chevron">▼</span>
       </button>
       <div class="faq-answer">
-        <div class="faq-answer-inner">For any technical issues with accessing the notebooks or using the AI hub, please contact your program trainer or the SG TVET Group administration team. For issues with your Google account or NotebookLM itself, you can also visit the Google NotebookLM support page directly.</div>
+        <div class="faq-answer-inner">For any technical issues with accessing the notebooks or using the AI hub, please contact your program trainer or the SG TVET Group administration team. For Google account issues you can visit the Google NotebookLM support page directly.</div>
       </div>
     </div>
 
@@ -3153,7 +3333,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" alt="SG TVET Group Log
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
-  });
   }
 </script>
 
